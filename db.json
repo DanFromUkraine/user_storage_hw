@@ -1,0 +1,40 @@
+{
+  "users": [
+    {
+      "id": "04b8",
+      "name": "Wagner Russo",
+      "password": "павіфва",
+      "date": "20:18"
+    },
+    {
+      "id": "4b97",
+      "name": "Hebert Maddox",
+      "password": "Qwerty@123#",
+      "date": "20:19"
+    },
+    {
+      "id": "3c91",
+      "name": "Delacruz Alford",
+      "password": "Qwerty@123#",
+      "date": "20:19"
+    },
+    {
+      "id": "6602",
+      "name": "Staci Robles",
+      "password": "Qwerty@123#",
+      "date": "20:19"
+    },
+    {
+      "id": "09a7",
+      "name": "Georgina Jenkins",
+      "password": "Qwerty@123#",
+      "date": "20:19"
+    },
+    {
+      "id": "8fb5",
+      "name": "Matilda Johns",
+      "password": "Qwerty@123#",
+      "date": "20:19"
+    }
+  ]
+}
