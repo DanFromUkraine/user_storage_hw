@@ -1,37 +1,34 @@
-const constant = {
-    BASE_URL: "http://localhost:3000/",
-    path: "users"
-}
-import small_render from "./render_page";
+import { constants } from "./constants";
+import { small_render } from "./small_render";
 
-const form_cont = document.querySelector("form");
+const register_form = document.querySelector(".register");
 
-function submit_listener(event) {
-    event.preventDefault();
-    const formSubject = new FormData(event.target);
-    const iter = formSubject.values();
 
-    const name = iter.next().value,
-    password = iter.next().value;
+export function handle_form(form) {
+    form.addEventListener("submit", () => {
+        const form_info = new FormData(form);
+        const user_info = {}
+        for (const [key, value] of form_info.entries()) {
+            user_info[key] = value;
+        }
+        const date_hours = (new Date).getHours();
+        const date_minutes = (new Date).getMinutes();
+        const f_t = time =>  time.length === 1 ? `0${time}`: time
+        const time = `${f_t(date_hours)}: ${f_t(date_minutes)}`
+        user_info.date = time;
     
-    const hours = new Date().getHours(),
-        minutes = new Date().getMinutes();
-
-    const body_obj = {
-        name,
-        password,
-        date:`${hours}:${minutes}`
-    }
-
-    const options = {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(body_obj)
-    }
-    fetch(`${constant.BASE_URL}${constant.path}`, options).then(resp => console.log(resp)).catch(e => Error(e)).finally(_=>console.log("ready"));
-
-    document.querySelector(".card_list").insertAdjacentHTML("beforeend", small_render(body_obj)); 
+        small_render(user_info);
+    
+         const options = {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(user_info)
+        }
+    
+        fetch(constants.BASE_ENDPOINT, options)
+    })
 }
-form_cont.addEventListener("submit", submit_listener);
+
+handle_form(register_form);
